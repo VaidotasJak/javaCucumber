@@ -3,7 +3,7 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 
-public class StepDefinitions {
+public class StartPageSteps {
 
     @Given("User has opened Chrome browser")
     public void user_has_opened_chrome_browser() {
