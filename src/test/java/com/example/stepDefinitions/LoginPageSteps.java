@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
+import java.time.Duration;
+
 public class LoginPageSteps {
 
     private static WebDriver driver;
@@ -20,12 +22,10 @@ public class LoginPageSteps {
 
         System.setProperty(
                 "webdriver.chrome.driver",
-                "C:\\Users\\ADMIN\\Documents\\chromedriver.exe");
+                "chromedriver.exe");
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT));
         driver.manage().window().maximize();
-
-        // Launch Website
-        driver.get("https://www.geeksforgeeks.org/");
     }
 
     @Given("User is on HRMLogin page {string}")
