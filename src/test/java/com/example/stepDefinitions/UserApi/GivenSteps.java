@@ -1,9 +1,10 @@
 package com.example.stepDefinitions.UserApi;
 
+import api.endpoints.UserEndpoints;
 import api.model.User;
-import api.untilities.DataTransfer;
 import apiObjects.userApi.UserApi;
 import io.cucumber.java.en.Given;
+import io.restassured.response.Response;
 
 public class GivenSteps {
 
@@ -12,7 +13,9 @@ public class GivenSteps {
     @Given("Valid user payload is generated")
     public void generateValidCreateUserPayload() {
         User newUser = userApi.act().generateValidUserPaylaod();
-        DataTransfer.addData("validUserPayload", newUser);
-        System.out.println(newUser);
+        Response user = UserEndpoints.createUser(newUser);
+        System.out.println(user.statusCode());
+        user.prettyPrint();
+
     }
 }

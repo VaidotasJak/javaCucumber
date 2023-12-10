@@ -8,13 +8,13 @@ import static io.restassured.RestAssured.given;
 
 public class UserEndpoints {
 
-    public static Response createUser(User paylaod) {
+    public static Response createUser(User payload) {
         return given()
                 .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
-                .body(paylaod)
+                .accept("*/*")
+                .body(payload)
                 .when()
-                .post(Routes.create_user);
+                .post(Routes.base_url + Routes.create_user);
     }
 
     public static Response getUser(String username) {

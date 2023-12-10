@@ -5,17 +5,17 @@ import java.util.Map;
 
 public class DataTransfer {
 
-    private static Map<String, Object> data;
+    private Map<String, Object> data;
 
     public DataTransfer() {
         this.data = new HashMap<>();
     }
 
-    public static void addData(String key, Object value) {
+    public void addData(String key, Object value) {
         data.put(key, value);
     }
 
-    public static Object getData(String key) {
+    public Object getData(String key) {
         return data.get(key);
     }
 
