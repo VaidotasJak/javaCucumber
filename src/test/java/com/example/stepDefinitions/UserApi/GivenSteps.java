@@ -9,12 +9,10 @@ public class GivenSteps {
 
     UserApi userApi = new UserApi();
     DataTransferSingleton dataTransferSingleton = DataTransferSingleton.getInstance();
-    long threadId = Thread.currentThread().getId();
 
     @Given("Valid user payload is generated")
     public void generateValidCreateUserPayload() throws InterruptedException {
         User newUser = userApi.act().generateValidUserPaylaod();
-        Thread.sleep(3000);
-        dataTransferSingleton.addDataHandler("validCreateUser" + threadId, newUser);
+        dataTransferSingleton.setUserPayload(newUser);
     }
 }

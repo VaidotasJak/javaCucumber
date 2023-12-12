@@ -1,19 +1,27 @@
 package api.endpoints;
 
 
-/**
- * https://petstore.swagger.io/v2
- *
- */
+import lombok.Data;
+
+import java.util.ResourceBundle;
+
+@Data
 public class Routes {
 
-    public static String base_url = "https://petstore.swagger.io/v2";
-
-
-    public static String create_user = "/user";
-    public static String get_user = "/user/{username}";
-    public static String update_user = "/user/{username}";
-    public static String delete_user = "/user/{username}";
+    private final String env = System.getProperty("env");
+    public String base_url;
+    public String create_user;
+    public String get_user;
+    public String update_user;
+    public String delete_user;
+    public Routes() {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle(env + "_routes");
+        this.base_url = resourceBundle.getString("base_url");
+        this.create_user = base_url + resourceBundle.getString("create_user");
+        this.get_user = base_url + resourceBundle.getString("get_user");
+        this.update_user = base_url + resourceBundle.getString("update_user");
+        this.delete_user = base_url + resourceBundle.getString("delete_user");
+    }
 
 
 }

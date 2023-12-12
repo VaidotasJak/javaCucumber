@@ -1,5 +1,6 @@
 package api.untilities;
 
+import api.model.User;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -27,6 +28,14 @@ public class DataTransferSingleton {
     public void addDataHandler(String key, Object value) {
         dataHandler.put(key, value);
     }
+
+    public User getUserPayload(){
+        return (User) dataHandler.get("validCreateUser"+Thread.currentThread().getId());
+    }
+    public void setUserPayload(User user) {
+        dataHandler.put("validCreateUser"+Thread.currentThread().getId(), user);
+    }
+
     public Map<String, Object> getAllData() {
         return dataHandler;
     }
