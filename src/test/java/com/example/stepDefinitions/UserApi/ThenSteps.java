@@ -1,3 +1,4 @@
 package com.example.stepDefinitions.UserApi;
-public class ThenSteps {
+
+public class ThenSteps{
 }

@@ -1,21 +1,20 @@
 package com.example.stepDefinitions.UserApi;
 
-import api.endpoints.UserEndpoints;
 import api.model.User;
+import api.untilities.DataTransferSingleton;
 import apiObjects.userApi.UserApi;
 import io.cucumber.java.en.Given;
-import io.restassured.response.Response;
 
 public class GivenSteps {
 
     UserApi userApi = new UserApi();
+    DataTransferSingleton dataTransferSingleton = DataTransferSingleton.getInstance();
+    long threadId = Thread.currentThread().getId();
 
     @Given("Valid user payload is generated")
-    public void generateValidCreateUserPayload() {
+    public void generateValidCreateUserPayload() throws InterruptedException {
         User newUser = userApi.act().generateValidUserPaylaod();
-        Response user = UserEndpoints.createUser(newUser);
-        System.out.println(user.statusCode());
-        user.prettyPrint();
-
+        Thread.sleep(3000);
+        dataTransferSingleton.addDataHandler("validCreateUser" + threadId, newUser);
     }
 }
