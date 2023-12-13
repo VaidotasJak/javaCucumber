@@ -14,6 +14,5 @@ public class GivenSteps {
     public void generateValidCreateUserPayload() {
         User newUser = userApi.act().generateValidUserPayload();
         dataTransferSingleton.setUserPayload(newUser);
-
     }
 }

@@ -17,11 +17,11 @@ public class UserEndpoints {
                 .post(Routes.createUser());
     }
 
-    public Response getUser(String username) {
+    public User getUser(String username) {
         return given()
                 .pathParams("username", username)
                 .when()
-                .get(Routes.getUser());
+                .get(Routes.getUser()).as(User.class);
     }
 //
 //    public static Response updateUser(String username, User paylaod) {

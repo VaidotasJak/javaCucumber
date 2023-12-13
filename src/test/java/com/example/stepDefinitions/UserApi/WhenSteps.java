@@ -19,9 +19,9 @@ public class WhenSteps {
 
     @When("user fetches new user with get request")
     public void fetchNewlyCreatedUser() {
-        User user = dataTransferSingleton.getUserPayload();
-        Response response = userEndpoints.getUser(user.getUsername());
-        System.out.println("NEW USER: " + response.prettyPrint());
+        User expectedUser = dataTransferSingleton.getUserPayload();
+        User actualUser = userEndpoints.getUser(expectedUser.getUsername());
+        dataTransferSingleton.setActualNewUser(actualUser);
     }
 
 }

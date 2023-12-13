@@ -19,11 +19,11 @@ public class ThenSteps {
 
     @Then("user is successfully created")
     public void userSuccessfullyCreated() {
-        User user = dataTransferSingleton.getUserPayload();
-
-
-        Response response = dataTransferSingleton.getCurrentResponse();
-        System.out.println(response.statusCode());
+        User expectedUser = dataTransferSingleton.getUserPayload();
+        User actualUser = dataTransferSingleton.getActualNewUser();
+        System.out.println("EXPECTED:" + expectedUser);
+        System.out.println("ACTUAL:" + actualUser);
+        assertEquals(expectedUser, actualUser);
     }
 
 }

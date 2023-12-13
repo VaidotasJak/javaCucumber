@@ -24,14 +24,6 @@ public class DataTransferSingleton {
         return INSTANCE;
     }
 
-    public Object getDataHandler(String keyValue) {
-        return dataHandler.get(keyValue);
-    }
-
-    public void addDataHandler(String key, Object value) {
-        dataHandler.put(key, value);
-    }
-
     public User getUserPayload() {
         return (User) dataHandler.get("validCreateUser" + Thread.currentThread().getId());
     }
@@ -48,6 +40,14 @@ public class DataTransferSingleton {
         dataHandler.put("currentResponse" + Thread.currentThread().getId(), response);
     }
 
+
+    public User getActualNewUser() {
+        return (User) dataHandler.get("returnedUser" + Thread.currentThread().getId());
+    }
+
+    public void setActualNewUser(User user) {
+        dataHandler.put("returnedUser" + Thread.currentThread().getId(), user);
+    }
     public Map<String, Object> getAllData() {
         return dataHandler;
     }
