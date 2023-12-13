@@ -8,23 +8,21 @@ import static io.restassured.RestAssured.given;
 
 public class UserEndpoints {
 
-    Routes routes = new Routes();
-
     public  Response createUser(User payload) {
         return given()
                 .contentType(ContentType.JSON)
-                .accept("*/*")
+                .accept("application/json")
                 .body(payload)
                 .when()
-                .post(routes.create_user);
+                .post(Routes.createUser());
     }
 
-//    public static Response getUser(String username) {
-//        return given()
-//                .pathParams("username", username)
-//                .when()
-//                .get(routes.getGet_user());
-//    }
+    public Response getUser(String username) {
+        return given()
+                .pathParams("username", username)
+                .when()
+                .get(Routes.getUser());
+    }
 //
 //    public static Response updateUser(String username, User paylaod) {
 //        return given()

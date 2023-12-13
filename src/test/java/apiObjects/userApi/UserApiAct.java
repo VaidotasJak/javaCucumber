@@ -6,9 +6,10 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 public class UserApiAct {
 
-    public User generateValidUserPaylaod() throws InterruptedException {
+    public User generateValidUserPayload() {
         String generatedString = RandomStringUtils.randomAlphabetic(6);
-        return new User(1, generatedString, "labasFistName", "labasLastName", "haha@@gmail.com",
-                "slaptas", "123456789");
+        int id = (int) Math.floor(Math.random() *(9999 - 1000 + 1) + 1000);
+        return new User(id, generatedString, generatedString+"FistName", generatedString+"LastName", generatedString+"@gmail.com",
+                generatedString+"slaptas", "123456789");
     }
 }

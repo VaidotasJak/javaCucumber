@@ -11,8 +11,9 @@ public class GivenSteps {
     DataTransferSingleton dataTransferSingleton = DataTransferSingleton.getInstance();
 
     @Given("Valid user payload is generated")
-    public void generateValidCreateUserPayload() throws InterruptedException {
-        User newUser = userApi.act().generateValidUserPaylaod();
+    public void generateValidCreateUserPayload() {
+        User newUser = userApi.act().generateValidUserPayload();
         dataTransferSingleton.setUserPayload(newUser);
+
     }
 }
