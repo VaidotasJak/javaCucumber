@@ -1,29 +1,35 @@
 package api.endpoints;
 
 import api.model.User;
+import api.untilities.DataTransferSingleton;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
 public class UserEndpoints {
+    Routes configManager = Routes.getInstance();
+    DataTransferSingleton dataTransferSingleton = DataTransferSingleton.getInstance();
 
-    public  Response createUser(User payload) {
-        return given()
+    public void createNewUser(User payload) {
+        Response response = given()
                 .contentType(ContentType.JSON)
                 .accept("application/json")
                 .body(payload)
                 .when()
-                .post(Routes.createUser());
+                .post(configManager.createUser());
+        dataTransferSingleton.setCurrentResponse(response);
     }
 
-    public User getUser(String username) {
-        return given()
+    public void getUser(String username) {
+        Response response = given()
                 .pathParams("username", username)
                 .when()
-                .get(Routes.getUser()).as(User.class);
+                .get(configManager.getUser());
+        dataTransferSingleton.setCurrentResponse(response);
     }
-//
+
+    //s
 //    public static Response updateUser(String username, User paylaod) {
 //        return given()
 //                .contentType(ContentType.JSON)
@@ -34,11 +40,12 @@ public class UserEndpoints {
 //                .put(routes.getUpdate_user());
 //    }
 //
-//    public static Response deleteUser(String username) {
-//        return given()
-//                .pathParams("username", username)
-//                .when()
-//                .delete(routes.getDelete_user());
-//    }
+    public void deleteUser(String username) {
+        Response response = given()
+                .pathParams("username", username)
+                .when()
+                .delete(configManager.deleteUser());
+        dataTransferSingleton.setCurrentResponse(response);
+    }
 
 }

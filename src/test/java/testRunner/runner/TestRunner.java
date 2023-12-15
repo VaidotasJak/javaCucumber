@@ -1,4 +1,4 @@
-package com.example.runner;
+package testRunner.runner;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -6,10 +6,9 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(tags = "",
         features = {
-                "src/test/resources/features/UserApi.feature",
-                "src/test/resources/features/UserApi2.feature"
+                "src/test/resources/features"
         },
-        glue = {"com/example/stepDefinitions"},
+        glue = {"testRunner/stepDefinitions"},
         plugin = {})
 
 public class TestRunner extends AbstractTestNGCucumberTests {

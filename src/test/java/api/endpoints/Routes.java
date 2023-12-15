@@ -1,46 +1,76 @@
 package api.endpoints;
 
-
-//import lombok.Data;
-//
-//import java.util.ResourceBundle;
-//
-//@Data
 //public class Routes {
 //
-//    private final String env = System.getProperty("env");
-//    public String base_url;
-//    public String create_user;
-//    public String get_user;
-//    public String update_user;
-//    public String delete_user;
-//    public Routes() {
-//        ResourceBundle resourceBundle = ResourceBundle.getBundle(env + "_routes");
-//        this.base_url = resourceBundle.getString("base_url");
-//        this.create_user = base_url + resourceBundle.getString("create_user");
-//        this.get_user = base_url + resourceBundle.getString("get_user");
-//        this.update_user = base_url + resourceBundle.getString("update_user");
-//        this.delete_user = base_url + resourceBundle.getString("delete_user");
+//    static Config config = ConfigFactory.load(System.getProperty("env") + "_routes");;
+//    static String BASE_URL = ConfigFactory.load(System.getProperty("env") + "_routes").getString("base_url");
+//    public static String createUser(){
+//        System.out.println(BASE_URL + config.getString("create_user"));
+//        return BASE_URL + config.getString("create_user");
 //    }
+//
+//    public static String getUser(){
+//        return BASE_URL + config.getString("get_user");
+//    }
+//
 
+//}
 
-import com.typesafe.config.Config;
-import com.typesafe.config.ConfigFactory;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class Routes {
+    private static Routes instance;
+    private Properties properties;
 
-    static Config config = ConfigFactory.load(System.getProperty("env") + "_routes");;
-    static String BASE_URL = ConfigFactory.load(System.getProperty("env") + "_routes").getString("base_url");
-    public static String createUser(){
-        System.out.println(BASE_URL + config.getString("create_user"));
-        return BASE_URL + config.getString("create_user");
+    private Routes() {
+        properties = new Properties();
+        loadProperties();
     }
 
-    public static String getUser(){
-        return BASE_URL + config.getString("get_user");
+    public static Routes getInstance() {
+        if (instance == null) {
+            instance = new Routes();
+        }
+        return instance;
+    }
+
+    private void loadProperties() {
+        String env = System.getProperty("env");
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream(env + "_routes.properties")) {
+            if (input == null) {
+                System.out.println("Sorry, unable to find config.properties");
+                return;
+            }
+            properties.load(input);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public String getProperty(String key) {
+        return properties.getProperty(key);
+    }
+
+    public String baseUrl(){
+        return getProperty("base_url");
+    }
+
+    public String createUser(){
+        return baseUrl() + getProperty("create_user");
+    }
+
+    public String getUser(){
+        return baseUrl() + getProperty("get_user");
+    }
+
+    public String deleteUser(){
+        return baseUrl() + getProperty("delete_user");
     }
 
 }
+
 
 
 

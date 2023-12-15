@@ -40,11 +40,10 @@ public class DataTransferSingleton {
         dataHandler.put("currentResponse" + Thread.currentThread().getId(), response);
     }
 
-
     public User getActualNewUser() {
         return (User) dataHandler.get("returnedUser" + Thread.currentThread().getId());
     }
-
+//
     public void setActualNewUser(User user) {
         dataHandler.put("returnedUser" + Thread.currentThread().getId(), user);
     }
