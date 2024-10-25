@@ -3,7 +3,7 @@
 <suite name="Suite" parallel="methods" data-provider-thread-count="3">
     <test  name="Cucumber with TestNG Test">
         <classes>
-            <class name="runner.testRunner.TestRunner">
+            <class name="testRunner.runner.TestRunner">
                 <methods>
                     <include name=".*"/>
                 </methods>

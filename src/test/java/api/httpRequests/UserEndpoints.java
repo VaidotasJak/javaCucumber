@@ -1,4 +1,4 @@
-package api.endpoints;
+package api.httpRequests;
 
 import api.model.User;
 import api.untilities.DataTransferSingleton;
@@ -29,7 +29,6 @@ public class UserEndpoints {
         dataTransferSingleton.setCurrentResponse(response);
     }
 
-    //s
 //    public static Response updateUser(String username, User paylaod) {
 //        return given()
 //                .contentType(ContentType.JSON)

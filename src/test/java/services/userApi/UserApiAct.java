@@ -1,7 +1,7 @@
-package apiObjects.userApi;
+package services.userApi;
 
 
-import api.endpoints.UserEndpoints;
+import api.httpRequests.UserEndpoints;
 import api.model.User;
 import org.apache.commons.lang3.RandomStringUtils;
 

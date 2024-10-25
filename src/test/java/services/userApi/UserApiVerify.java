@@ -1,4 +1,4 @@
-package apiObjects.userApi;
+package services.userApi;
 
 import api.model.User;
 

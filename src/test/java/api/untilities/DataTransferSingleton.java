@@ -43,14 +43,13 @@ public class DataTransferSingleton {
     public User getActualNewUser() {
         return (User) dataHandler.get("returnedUser" + Thread.currentThread().getId());
     }
-//
+
     public void setActualNewUser(User user) {
         dataHandler.put("returnedUser" + Thread.currentThread().getId(), user);
     }
     public Map<String, Object> getAllData() {
         return dataHandler;
     }
-
 
 }
 

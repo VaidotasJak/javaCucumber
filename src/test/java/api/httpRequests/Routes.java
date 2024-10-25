@@ -1,4 +1,4 @@
-package api.endpoints;
+package api.httpRequests;
 
 //public class Routes {
 //
@@ -70,7 +70,3 @@ public class Routes {
     }
 
 }
-
-
-
-

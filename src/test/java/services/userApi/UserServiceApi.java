@@ -1,10 +1,10 @@
-package apiObjects.userApi;
+package services.userApi;
 
-public class UserApi {
+public class UserServiceApi {
 
     UserApiAct userApiAct;
     UserApiVerify userApiVerify;
-    public UserApi(){
+    public UserServiceApi(){
         this.userApiAct = new UserApiAct();
         this.userApiVerify = new UserApiVerify();
     }
